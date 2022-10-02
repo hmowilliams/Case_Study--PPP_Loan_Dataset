@@ -160,24 +160,101 @@ The file got large quickly, so I started looking at file_1 on its own. I created
 ```
 ggplot(file_1, aes(x=JobsReported, y=ForgivenessAmount)) + geom_point() + geom_jitter(na.rm=TRUE)
 ```
+Loading dataset
+
+```{r load data}
+load(file='all_fully_forgiven_loans.Rda')
+```
 
 ## Inspecting Data
 Since the calculations take a long time to run on a dataset this large, I first wanted to familiarize myself with what data was available.
-```
-View(all_ppp_data)
+```{r view loans}
+View(all_fully_forgiven_loans)
 ```
 
 A significant amount of the fields were left blank, for example:
-`
-summary(all_ppp_data)
-`
+```{r summary}
+summary(all_fully_forgiven_loans)
+```
 
 I'm only interested in loans that were at least partially forgiven, so I filtered out rows where the forgiven amount was less than the initial approval amount or current approval amount. I saved that as the file `all_fully_forgiven_loans.Rda`.
-`{r}
-all_forgiven_loans <- filter(all_ppp_data_220930, !is.na(ForgivenessAmount))
-all_fully_forgiven_loans <- filter(all_forgiven_loans, ForgivenessAmount >= CurrentApprovalAmount)
-save(all_fully_forgiven_loans, file="PPP Loan Data/all_fully_forgiven_loans.Rda")
-`
+
+`all_forgiven_loans <- filter(all_ppp_data_220930, !is.na(ForgivenessAmount))`
+`all_fully_forgiven_loans <- filter(all_forgiven_loans, ForgivenessAmount >= CurrentApprovalAmount)`
+`save(all_fully_forgiven_loans, file="all_fully_forgiven_loans.Rda")`
+Since this file is too large to upload to GitHub, I broke the dataset down by different sections.
+
+### State
+
+* Alabama
+  + Filter by state 
+  `loans_by_state_alabama <- all_fully_forgiven_loans %>% filter(BorrowerState=="AL")`
+  + Save dataset
+  `save(loans_by_state_alabama, file="loans_by_state_alabama.Rda")`
+* Alaska
+  + Filter by state 
+  `loans_by_state_alaska <- all_fully_forgiven_loans %>% filter(BorrowerState=="AK")`
+  + Save dataset
+  `save(loans_by_state_alaska, file="loans_by_state_alaska.Rda")`
+* Arizona
+  + Filter by state 
+  `loans_by_state_arizona <- all_fully_forgiven_loans %>% filter(BorrowerState=="AZ")`
+  + Save dataset
+  `save(loans_by_state_arizona, file="loans_by_state_arizona.Rda")`
+* Arkansas
+* California
+* Colorado
+* Connecticut
+* Delaware
+* Florida
+* Georgia
+* Hawaii
+* Idaho
+* Illinois
+* Indiana
+* Iowa
+* Kansas
+* Kentucky
+* Louisiana
+* Maine
+* Maryland
+* Massachusetts
+* Michigan
+* Minnesota
+* Mississippi
+* Missouri
+* Montana
+* Nebraska
+* Nevada
+* New Hampshire
+* New Jersey
+* New Mexico
+* New York
+* North Carolina
+* North Dakota
+* Ohio
+* Oklahoma
+* Oregon
+* Pennsylvania
+* Rhode Island
+* South Carolina
+* South Dakota
+* Tennessee
+* Texas
+* Utah
+* Vermont
+* Virginia
+* Washington
+* West Virginia
+* Wisconsin
+* Wyoming
+
+### Unusual Data
+* Business Names with Two Characters or Less
+  + `business_names_with_two_characters_or_less <- all_fully_forgiven_loans %>% filter(nchar(BorrowerName) <= 2)`
+  + `save(business_names_with_two_characters_or_less, file="business_names_with_two_characters_or_less.Rmd")`
+
+```
 
 ## Corroborating Datasets
 Some states have downloads available of all their business licesnses. I downloaded the CSV file of all business licenses in Alaska
