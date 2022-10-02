@@ -1,0 +1,221 @@
+---
+title: "Data Analytics Capstone"
+author: "Holly M. Williams"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Introduction
+I chose the PPP Loan dataset for this case study because I'm interested in learning about any trends that may help indentify fradulent applications. I was also interested in this project because the dataset is exceptionally large and I think that analyzing this dataset will be very interesting and a good challenge.
+## Downloading and Combining Data
+To download the data from the [U.S. Small Business Administration](), I first imported each CSV file and created dataframes of each. 
+
+The CSV files are available here:
+
+* [File 1](https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/ef9a027d-6681-4e36-a1d8-82757dd210b4/download/public_up_to_150k_1_220930.csv)
+  + Steps
+    - Downloaded File
+    `download.file("https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/ef9a027d-6681-4e36-a1d8-82757dd210b4/download/public_up_to_150k_1_220930.csv", destfile = "PPP Loan Data/220930_file_1.csv", mode = "wb")`
+    - Created dataset
+    `file_1_220930 <- read_csv("PPP Loan Data/220930_file_1.csv")`
+    - Saved dataset 
+    `save(file_1_220930, file="PPP Loan Data/file_1_220930.Rda")`
+
+* [File 2](https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/cd9ec3d9-515a-4064-b843-2c22ad9046b4/download/public_up_to_150k_2_220930.csv)
+  + Steps
+    - Downloaded File
+    `download.file("https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/ef9a027d-6681-4e36-a1d8-82757dd210b4/download/public_up_to_150k_2_220930.csv", destfile = "PPP Loan Data/220930_file_2.csv", mode = "wb")`
+    - Created dataset
+    `file_2_220930 <- read_csv("PPP Loan Data/220930_file_2.csv")`
+    - Saved dataset 
+    `save(file_2_220930, file="PPP Loan Data/file_2_220930.Rda")`
+
+* [File 3](https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/cd9ec3d9-515a-4064-b843-2c22ad9046b4/download/public_up_to_150k_3_220930.csv)
+  + Steps
+    - Downloaded File
+    `download.file("https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/ef9a027d-6681-4e36-a1d8-82757dd210b4/download/public_up_to_150k_3_220930.csv", destfile = "PPP Loan Data/220930_file_3.csv", mode = "wb")`
+    - Created dataset
+    `file_3_220930 <- read_csv("PPP Loan Data/220930_file_3.csv")`
+    - Saved dataset 
+    `save(file_3_220930, file="PPP Loan Data/file_3_220930.Rda")`
+
+* [File 4](https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/cd9ec3d9-515a-4064-b843-2c22ad9046b4/download/public_up_to_150k_4_220930.csv)
+  + Steps
+    - Downloaded File
+    `download.file("https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/ef9a027d-6681-4e36-a1d8-82757dd210b4/download/public_up_to_150k_4_220930.csv", destfile = "PPP Loan Data/220930_file_4.csv", mode = "wb")`
+    - Created dataset
+    `file_4_220930 <- read_csv("PPP Loan Data/220930_file_4.csv")`
+    - Saved dataset 
+    `save(file_4_220930, file="PPP Loan Data/file_4_220930.Rda")`    
+  
+* [File 5](https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/cd9ec3d9-515a-4064-b843-2c22ad9046b4/download/public_up_to_150k_5_220930.csv)
+  + Steps
+    - Downloaded File
+    `download.file("https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/ef9a027d-6681-4e36-a1d8-82757dd210b4/download/public_up_to_150k_5_220930.csv", destfile = "PPP Loan Data/220930_file_5.csv", mode = "wb")`
+    - Created dataset
+    `file_5_220930 <- read_csv("PPP Loan Data/220930_file_5.csv")`
+    - Saved dataset 
+    `save(file_5_220930, file="PPP Loan Data/file_5_220930.Rda")` 
+  
+* [File 6](https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/cd9ec3d9-515a-4064-b843-2c22ad9046b4/download/public_up_to_150k_6_220930.csv)
+  + Steps
+    - Downloaded File
+    `download.file("https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/ef9a027d-6681-4e36-a1d8-82757dd210b4/download/public_up_to_150k_6_220930.csv", destfile = "PPP Loan Data/220930_file_6.csv", mode = "wb")`
+    - Created dataset
+    `file_6_220930 <- read_csv("PPP Loan Data/220930_file_6.csv")`
+    - Saved dataset 
+    `save(file_6_220930, file="PPP Loan Data/file_6_220930.Rda")`
+   
+* [File 7](https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/cd9ec3d9-515a-4064-b843-2c22ad9046b4/download/public_up_to_150k_7_220930.csv)
+  + Steps
+    - Downloaded File
+    `download.file("https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/ef9a027d-6681-4e36-a1d8-82757dd210b4/download/public_up_to_150k_7_220930.csv", destfile = "PPP Loan Data/220930_file_7.csv", mode = "wb")`
+    - Created dataset
+    `{r}
+    file_7_220930 <- read_csv("PPP Loan Data/220930_file_7.csv")`
+    `
+    - Saved dataset 
+    `save(file_7_220930, file="PPP Loan Data/file_7_220930.Rda")`  
+    
+* [File 8](https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/cd9ec3d9-515a-4064-b843-2c22ad9046b4/download/public_up_to_150k_8_220930.csv)
+  + Steps
+    - Downloaded File
+    `download.file("https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/ef9a027d-6681-4e36-a1d8-82757dd210b4/download/public_up_to_150k_8_220930.csv", destfile = "PPP Loan Data/220930_file_8.csv", mode = "wb")`
+    - Created dataset
+    `file_8_220930 <- read_csv("PPP Loan Data/220930_file_8.csv")`
+    - Saved dataset 
+    `save(file_8_220930, file="PPP Loan Data/file_8_220930.Rda")`
+    
+* [File 9](https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/cd9ec3d9-515a-4064-b843-2c22ad9046b4/download/public_up_to_150k_9_220930.csv)
+  + Steps
+    - Downloaded File
+    `download.file("https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/ef9a027d-6681-4e36-a1d8-82757dd210b4/download/public_up_to_150k_9_220930.csv", destfile = "PPP Loan Data/220930_file_9.csv", mode = "wb")`
+    - Created dataset
+    `file_9_220930 <- read_csv("PPP Loan Data/220930_file_9.csv")`
+    - Saved dataset 
+    `save(file_9_220930, file="PPP Loan Data/file_9_220930.Rda")`
+    
+* [File 10](https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/cd9ec3d9-515a-4064-b843-2c22ad9046b4/download/public_up_to_150k_10_220930.csv)
+  + Steps
+    - Downloaded File
+    `download.file("https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/ef9a027d-6681-4e36-a1d8-82757dd210b4/download/public_up_to_150k_10_220930.csv", destfile = "PPP Loan Data/220930_file_10.csv", mode = "wb")`
+    - Created dataset
+    `file_10_220930 <- read_csv("PPP Loan Data/220930_file_10.csv")`
+    - Saved dataset 
+    `save(file_10_220930, file="PPP Loan Data/file_10_220930.Rda")`
+    
+* [File 11](https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/cd9ec3d9-515a-4064-b843-2c22ad9046b4/download/public_up_to_150k_10_220930.csv)
+  + Steps
+    - Downloaded File
+    `download.file("https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/ef9a027d-6681-4e36-a1d8-82757dd210b4/download/public_up_to_150k_11_220930.csv", destfile = "PPP Loan Data/220930_file_11.csv", mode = "wb")`
+    - Created dataset
+    `file_11_220930 <- read_csv("PPP Loan Data/220930_file_11.csv")`
+    - Saved dataset 
+    `save(file_11_220930, file="PPP Loan Data/file_11_220930.Rda")`
+    
+* [File 12](https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/cd9ec3d9-515a-4064-b843-2c22ad9046b4/download/public_up_to_150k_10_220930.csv)
+  + Steps
+    - Downloaded File
+    `download.file("https://data.sba.gov/dataset/8aa276e2-6cab-4f86-aca4-a7dde42adf24/resource/ef9a027d-6681-4e36-a1d8-82757dd210b4/download/public_up_to_150k_12_220930.csv", destfile = "PPP Loan Data/220930_file_12.csv", mode = "wb")`
+    - Created dataset
+    `file_12_220930 <- read_csv("PPP Loan Data/220930_file_12.csv")`
+    - Saved dataset 
+    `save(file_12_220930, file="PPP Loan Data/file_12_220930.Rda")`
+...
+
+I then merged all the dataframes together into one.
+`
+all_ppp_data_220930 <- rbind(file_1_220930, file_2_220930, file_3_220930, file_4_220930, file_5_220930, file_6_220930, file_7_220930, file_8_220930, file_9_220930, file_10_220930, file_11_220930, file_12_220930)
+`
+*There are 10,800,000 records in the full dataset.*
+
+I saved the full dataset.
+`save(all_ppp_data_220930, file="PPP Loan Data/all_ppp_data_220930.Rda")`
+
+I'm only interested in loans which haven't been repaid, so I filtered out only the loans which have have a value for `ForgivenessAmount`:
+`all_unpaid_loans <- filter(all_ppp_data_220930, !is.na(ForgivenessAmount))`
+
+I saved this file for future use.
+`save(all_unpaid_loans, file="PPP Loan Data/all_unpaid_loans.Rda")`
+
+**This was not a good naming choice.**
+*This reduced the records to 7,457,720.*
+
+I then filtered out all values where the `ForgivenessAmount` is greater than or equal to `CurrentApprovalAmount`.
+`all_fully_forgiven_loans <- filter(all_forgiven_loans, ForgivenessAmount >= CurrentApprovalAmount)`
+
+*This reduced the records to 7,124,041.*
+I saved this file for future use.
+`save(all_fully_forgiven_loans, file="PPP Loan Data/all_fully_forgiven_loans.Rda")`
+
+
+## 
+
+
+The file got large quickly, so I started looking at file_1 on its own. I created a scatter plot of JobsReported and ForgivenessAmount and saw that there was a dramatic number of loans with under 100 jobs reported and up to 150,000 requested in loans.
+
+```
+ggplot(file_1, aes(x=JobsReported, y=ForgivenessAmount)) + geom_point() + geom_jitter(na.rm=TRUE)
+```
+
+## Inspecting Data
+Since the calculations take a long time to run on a dataset this large, I first wanted to familiarize myself with what data was available.
+```
+View(all_ppp_data)
+```
+
+A significant amount of the fields were left blank, for example:
+`
+summary(all_ppp_data)
+`
+
+I'm only interested in loans that were at least partially forgiven, so I filtered out rows where the forgiven amount was less than the initial approval amount or current approval amount. I saved that as the file `all_fully_forgiven_loans.Rda`.
+`{r}
+all_forgiven_loans <- filter(all_ppp_data_220930, !is.na(ForgivenessAmount))
+all_fully_forgiven_loans <- filter(all_forgiven_loans, ForgivenessAmount >= CurrentApprovalAmount)
+save(all_fully_forgiven_loans, file="PPP Loan Data/all_fully_forgiven_loans.Rda")
+`
+
+## Corroborating Datasets
+Some states have downloads available of all their business licesnses. I downloaded the CSV file of all business licenses in Alaska
+`business_licenses_alaska <- read_csv("PPP Loan Data/Alaska_BusinessLicenseDownload.csv")`
+I then filtered all the forgiven PPP loans by `BorrowerState = 'AK'`
+`alaska_ppp_loans <- filter(all_ppp_data_220930, BorrowerState = 'AK')`
+Next I merged the two databases by business name.
+`alaska_ppp_loans_with_business_licenses <- merge(alaska_ppp_loans, business_licenses_alaska, by.x=c("BorrowerName"), by.y=c("BusinessName"))`
+Some of the names had variations in the capitalization or punctuation, so those did not line up exactly.
+
+I filtered all the Alaska loans that stated their business had been open for over two years.
+`alaska_over_two_years <- filter(alaska_ppp_loans_with_business_licenses, BusinessAgeDescription=='Existing or more than 2 years old')`
+I extracted the years from the `IssueDate`.
+`alaska_over_two_years$YearEstablished <- format(as.Date(alaska_over_two_years$IssueDate, format="%d/%m/%Y"),"%Y")`
+I then looked for businesses labeled as `Existing or more than 2 years old` whose business licenses were issued in 2020. There were no results.
+`alaska_over_two_years_established_2020 <- filter(alaska_over_two_years, IssueDate==2020)`
+`View(alaska_over_two_years_established_2020)`
+I checked 2019 the same way, also with no results.
+* 2020
+`alaska_over_two_years_established_2020 <- filter(alaska_over_two_years, YearEstablished==2020)`
+* 2019
+`alaska_over_two_years_established_2019 <- filter(alaska_over_two_years, YearEstablished==2019)`
+* 2018
+`alaska_over_two_years_established_2018 <- filter(alaska_over_two_years, YearEstablished==2018)`
+* 2017
+`alaska_over_two_years_established_2017 <- filter(alaska_over_two_years, YearEstablished==2017)`
+``
+
+## Concerns
+### Unusual Business Names
+* Business Names With Only 1 Character
+`one_character <- all_ppp_data %>% filter(nchar(BorrowerName) == 1)`
+* Business Names With Only 2 Characters
+`two_characters <- all_ppp_data %>% filter(nchar(BorrowerName) == 2)`
+* Exemption 6
+`exeption_6 <- filter(all_ppp_data, BorrowerName=='Exemption 6')`
+* Not Available
+`not_available <- filter(all_ppp_data, BorrowerName=='Not Available')`
+
+
+
